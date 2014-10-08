@@ -4,6 +4,16 @@ game.resources = [
 	 * @example
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
+	 //level tileset
+    {name: "fall-tiles",  type:"image", src: "data/map/fall-tiles.png"},
+    // our metatiles
+    {name: "collision-tiles",  type:"image", src: "data/map/collision-tiles.png"},
+    //background
+    {name: "bg-sm",  type:"image", src: "data/map/bg-sm.png"},
+    //you spritesheet
+    {name: "self-walk-short",  type:"image", src: "data/img/self-walk-short.png"},
+
+
 
 	/* Atlases 
 	 * @example
@@ -15,6 +25,7 @@ game.resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
+    {name: "area01", type: "tmx", src: "data/map/area01.tmx"}
 
 	/* Background music. 
 	 * @example
