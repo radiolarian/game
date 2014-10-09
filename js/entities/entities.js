@@ -58,7 +58,7 @@ game.PlayerEntity = me.Entity.extend({
  
         // check & update player movement
         this.body.update(dt);
- 
+
         // update animation if necessary
         if (this.body.vel.x!=0 || this.body.vel.y!=0) {
             // update object animation

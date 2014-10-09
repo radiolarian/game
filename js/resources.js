@@ -12,6 +12,7 @@ game.resources = [
     {name: "bg-sm",  type:"image", src: "data/map/bg-sm.png"},
     //you spritesheet
     {name: "self-walk-short",  type:"image", src: "data/img/self-walk-short.png"},
+    {name: "star",  type:"image", src: "data/img/star.png"},
 
 
 
@@ -25,7 +26,7 @@ game.resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
-    {name: "area01", type: "tmx", src: "data/map/area01.tmx"}
+    {name: "area01", type: "tmx", src: "data/area01.tmx"}
 
 	/* Background music. 
 	 * @example
