@@ -59,6 +59,10 @@ game.PlayerEntity = me.Entity.extend({
         // check & update player movement
         this.body.update(dt);
 
+        // check for collision with sthg
+        me.collision.check(this, true, this.collideHandler.bind(this), true);
+       //this.body.onCollision = this.onCollision.bind(this);
+
         // update animation if necessary
         if (this.body.vel.x!=0 || this.body.vel.y!=0) {
             // update object animation
@@ -69,7 +73,24 @@ game.PlayerEntity = me.Entity.extend({
         // else inform the engine we did not perform
         // any update (e.g. position, animation)
         return false;
+    },
+
+    collideHandler : function (response) {
+    if (response.b.body.collisionType === me.collision.types.ENEMY_OBJECT) {
+        if ((response.overlapV.y>0) && !this.body.jumping) {
+            // bounce (force jump)
+            this.body.falling = false;
+            this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
+            // set the jumping flag
+            this.body.jumping = true;
+        }
+        else {
+            // let's flicker in case we touched an enemy
+            this.renderable.flicker(750);
+        }
     }
+    }
+
 });
 
 /*----------------
@@ -102,7 +123,6 @@ game.CoinEntity = me.CollectableEntity.extend({
  
         // make sure it cannot be collected "again"
         this.body.setCollisionMask(me.collision.types.NO_OBJECT);
- 
         // remove it
         me.game.world.removeChild(this);
     }
