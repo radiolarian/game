@@ -71,3 +71,39 @@ game.PlayerEntity = me.Entity.extend({
         return false;
     }
 });
+
+/*----------------
+  a Coin entity
+ ----------------- */
+game.CoinEntity = me.CollectableEntity.extend({
+    // extending the init function is not mandatory
+    // unless you need to add some extra initialization
+    init: function(x, y, settings) {
+         //define this here instead of tiled
+        settings.image = "stars";
+        var width = settings.width;
+        var height = settings.height;
+ 
+        // adjust the size setting information to match the sprite size
+        // so that the entity object is created with the right size
+        settings.spritewidth = settings.width = 32;
+        settings.spritewidth = settings.height = 32;
+        // call the parent constructor
+        this._super(me.CollectableEntity, 'init', [x, y , settings]);
+ 
+        // set our collision callback function
+        this.body.onCollision = this.onCollision.bind(this);
+    },
+ 
+    // this function is called by the engine, when
+    // an object is touched by something (here collected)
+    onCollision: function() {
+        // do something when collected
+ 
+        // make sure it cannot be collected "again"
+        this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+ 
+        // remove it
+        me.game.world.removeChild(this);
+    }
+});
