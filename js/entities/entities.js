@@ -21,6 +21,9 @@ game.PlayerEntity = me.Entity.extend({
  
         // ensure the player is updated even when outside of the viewport
         this.alwaysUpdate = true;
+        this.font = new me.BitmapFont("32x32_font", 32);
+        this.type = 'self';
+
     },
  
     /* -----
@@ -61,7 +64,7 @@ game.PlayerEntity = me.Entity.extend({
  
         }
 
- 
+
         // check & update player movement
         this.body.update(dt);
 
@@ -101,7 +104,20 @@ game.PlayerEntity = me.Entity.extend({
             }
         }
     }
-    }
+    },
+
+            /*draw : function (context) {
+            //this.parent(context);
+            
+            //context = me.CanvasRenderer.getContext2d();
+           
+            touching = me.game.world.collide(this);
+            if (touching) {
+                if (touching.obj.type == 'enemy') {
+                    this.font.draw(context, "WHY", this.pos.x-50, this.pos.y-50);
+                }
+            }
+        },*/
 
 });
 
@@ -174,6 +190,8 @@ game.EnemyEntity = me.Entity.extend({
  
         // walking & jumping speed
         this.body.setVelocity(4, 6);
+        this.font = new me.BitmapFont("32x32_font", 32);
+        this.type = 'enemy';
          
     },
     /**
@@ -187,8 +205,6 @@ game.EnemyEntity = me.Entity.extend({
             this.renderable.flicker(750);
         }
     }, **/
- 
-    // manage the enemy movement 
     update: function(dt) {
  
         if (this.walkLeft && this.pos.x <= this.startX) {
@@ -206,7 +222,9 @@ game.EnemyEntity = me.Entity.extend({
             // update object animation
             this._super(me.Entity, 'update', [dt]);
             return true;
-        }
-      //  return false;
-    } 
+            }
+        },
+
+
+      //  return false; 
 });
