@@ -101,23 +101,11 @@ game.PlayerEntity = me.Entity.extend({
                 game.data.textBox = texts[i];
                 game.data.score -= 1;
                 this.renderable.flicker(750);
+                game.textEntity.draw();
             }
         }
     }
     },
-
-            /*draw : function (context) {
-            //this.parent(context);
-            
-            //context = me.CanvasRenderer.getContext2d();
-           
-            touching = me.game.world.collide(this);
-            if (touching) {
-                if (touching.obj.type == 'enemy') {
-                    this.font.draw(context, "WHY", this.pos.x-50, this.pos.y-50);
-                }
-            }
-        },*/
 
 });
 
@@ -190,9 +178,8 @@ game.EnemyEntity = me.Entity.extend({
  
         // walking & jumping speed
         this.body.setVelocity(4, 6);
-        this.font = new me.BitmapFont("32x32_font", 32);
-        this.type = 'enemy';
-         
+        this.font = new me.BitmapFont("32x32_font", 32); 
+        this.type = 'enemy'        
     },
     /**
     // call by the engine when colliding with another object
@@ -223,8 +210,78 @@ game.EnemyEntity = me.Entity.extend({
             this._super(me.Entity, 'update', [dt]);
             return true;
             }
+        },   
+      //  return false; 
+});
+
+
+//BAD STYLE!!!
+game.textEntity = me.Entity.extend({
+    init: function(x, y, settings) {
+        // define this here instead of tiled
+        settings.image = "textEntity";
+         
+        // save the area size defined in Tiled
+        var width = settings.width;
+        var height = settings.height;
+ 
+        // adjust the size setting information to match the sprite size
+        // so that the entity object is created with the right size
+        settings.spritewidth = settings.width = 32;
+        settings.spritewidth = settings.height = 32;
+         
+        // call the parent constructor
+        this._super(me.Entity, 'init', [x, y , settings]);
+         
+        // set start/end position based on the initial area size
+        x = this.pos.x;
+        this.startX = x;
+        this.endX   = x + width - settings.spritewidth;
+        this.pos.x  = x + width - settings.spritewidth; 
+ 
+        // manually update the entity bounds as we manually change the position
+        this.updateBounds();
+ 
+        // to remember which side we were walking
+        this.walkLeft = false;
+ 
+        // walking & jumping speed
+        this.body.setVelocity(4, 6);
+        this.font = new me.BitmapFont("32x32_font", 32);
+        this.type = 'text';
+         
+    },
+    update: function(dt) {
+ 
+        if (this.walkLeft && this.pos.x <= this.startX) {
+            this.walkLeft = false;
+            } else if (!this.walkLeft && this.pos.x >= this.endX) {
+                this.walkLeft = true;
+            }
+        // make it walk
+        this.flipX(this.walkLeft);
+        this.body.vel.x += (this.walkLeft) ? -this.body.accel.x * me.timer.tick : this.body.accel.x * me.timer.tick;             
+        // update the body movement
+        this.body.update(dt);   
+        // update animation if necessary
+        if (this.body.vel.x!=0 || this.body.vel.y!=0) {
+            // update object animation
+            this._super(me.Entity, 'update', [dt]);
+            return true;
+            }
         },
 
 
+        draw : function (context) {
+            //this.parent(context);
+            //context = me.CanvasRenderer.getContext2d();
+           
+            touching = me.game.world.collide(this);
+            if (touching) {
+                if (touching.obj.type == 'self') {
+                    this.font.draw(context, "WHY", this.pos.x, this.pos.y);
+                }
+            }
+        },   
       //  return false; 
 });
