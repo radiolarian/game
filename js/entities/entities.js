@@ -32,12 +32,12 @@ game.PlayerEntity = me.Entity.extend({
  
         if (me.input.isKeyPressed('left')) {
             // flip the sprite on horizontal axis
-            this.flipX(true);
+            this.flipX(false);
             // update the entity velocity
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
         } else if (me.input.isKeyPressed('right')) {
             // unflip the sprite
-            this.flipX(false);
+            this.flipX(true);
             // update the entity velocity
             this.body.vel.x += this.body.accel.x * me.timer.tick;
         } else {
@@ -45,6 +45,7 @@ game.PlayerEntity = me.Entity.extend({
         }
      
         if (me.input.isKeyPressed('jump')) {
+
             // make sure we are not already jumping or falling
             if (!this.body.jumping && !this.body.falling) {
                 // set current vel to the maximum defined value
