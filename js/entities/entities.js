@@ -29,6 +29,9 @@ game.PlayerEntity = me.Entity.extend({
  
     ------ */
     update: function(dt) {
+        if (!this.renderable.isFlickering()) {
+            game.data.textBox = ""
+        }
         if (me.input.isKeyPressed('left')) {
             this.hit = false;
             // flip the sprite on horizontal axis
@@ -90,6 +93,9 @@ game.PlayerEntity = me.Entity.extend({
         else {
             // let's flicker in case we touched an enemy
             if (!this.renderable.isFlickering()) {
+                var texts = ["BAD1", "BAD2", "BAD3"];
+                var i = Math.floor(Math.random()*texts.length);
+                game.data.textBox = texts[i];
                 game.data.score -= 1;
                 this.renderable.flicker(750);
             }
