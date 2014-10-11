@@ -6,7 +6,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		//load level
 		me.levelDirector.loadLevel("area01");
 
-		// reset the score
+		// DEBUG IS HERE!!!!!!!!!!!!!!!!!!!!!
 		game.data.score = 0;
 		game.data.textBox = "HI";
 

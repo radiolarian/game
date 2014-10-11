@@ -12,7 +12,7 @@ game.PlayerEntity = me.Entity.extend({
     init: function(x, y, settings) {
         // call the constructor
         this._super(me.Entity, 'init', [x, y, settings]);
- 
+        this.z = 10;
         // set the default horizontal & vertical speed (accel vector)
         this.body.setVelocity(3, 15);
  
@@ -33,7 +33,7 @@ game.PlayerEntity = me.Entity.extend({
     ------ */
     update: function(dt) {
         if (!this.renderable.isFlickering()) {
-            game.data.textBox = ""
+            game.data.textBox = "";
         }
         if (me.input.isKeyPressed('left')) {
             this.hit = false;
@@ -229,3 +229,24 @@ game.EnemyEntity = me.Entity.extend({
 
       //  return false; 
 });
+
+game.StarGateEntity = me.LevelEntity.extend({
+    init : function (x, y, settings) {
+        // Call super constructor
+        //this._parent(x, y, settings);
+        this._super(me.LevelEntity, 'init', [x, y , settings]);
+        // Save all settings
+        this.settings = settings;
+        this.fade = "#000000";
+        this.duration = 250;
+    },
+    onCollision : function () {
+        if (game.data.score > 24) {
+            //me.levelDirectory.loadLevel("alpha");
+            this.goTo("alpha");
+        } else {
+            var calc = 25 - game.data.score;
+            game.data.textBox = "NEED " + calc + " MORE STARS";
+        }
+    }   
+}); 
