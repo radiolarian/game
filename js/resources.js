@@ -14,6 +14,7 @@ game.resources = [
     {name: "self-walk-short",  type:"image", src: "data/img/self-walk-short.png"},
     {name: "npc-walk",  type:"image", src: "data/img/npc-walk.png"},
     {name: "stars",  type:"image", src: "data/img/star.png"},
+    {name: "star-gate",  type:"image", src: "data/img/star-gate.png"},
 
 
 
