@@ -8,6 +8,7 @@ game.PlayScreen = me.ScreenObject.extend({
 
 		// reset the score
 		game.data.score = 0;
+		game.data.textBox = "HI";
 
 		//music
 		me.audio.playTrack("fall");

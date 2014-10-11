@@ -96,7 +96,7 @@ game.PlayerEntity = me.Entity.extend({
         else {
             // let's flicker in case we touched an enemy
             if (!this.renderable.isFlickering()) {
-                var texts = ["BAD1", "BAD2", "BAD3"];
+                var texts = ["\"BAD1\"","\"BAD2\"", "\"BAD3\""];
                 var i = Math.floor(Math.random()*texts.length);
                 game.data.textBox = texts[i];
                 game.data.score -= 1;
