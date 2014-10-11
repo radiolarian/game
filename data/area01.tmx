@@ -22,7 +22,7 @@
   </tile>
   <tile id="3">
    <properties>
-    <property name="type" value="platform"/>
+    <property name="type" value="rslope"/>
    </properties>
   </tile>
   <tile id="4">
@@ -31,6 +31,11 @@
    </properties>
   </tile>
   <tile id="5">
+   <properties>
+    <property name="type" value="platform"/>
+   </properties>
+  </tile>
+  <tile id="6">
    <properties>
     <property name="type" value="platform"/>
    </properties>
