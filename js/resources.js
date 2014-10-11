@@ -28,15 +28,17 @@ game.resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
-    {name: "area01", type: "tmx", src: "data/area01.tmx"}
+    {name: "area01", type: "tmx", src: "data/area01.tmx"},
 
 	/* Background music. 
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/"},
 	 */	
+	{name: "fall", type: "audio", src: "data/bgm/"},
 
 	/* Sound effects. 
 	 * @example
 	 * {name: "example_sfx", type: "audio", src: "data/sfx/"}
 	 */
+	{name: "cling", type: "audio", src: "data/sfx/"},
 ];
