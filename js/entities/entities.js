@@ -89,6 +89,8 @@ game.PlayerEntity = me.Entity.extend({
         else {
             // let's flicker in case we touched an enemy
             this.renderable.flicker(750);
+            game.data.score -= 1;
+
         }
     }
     }

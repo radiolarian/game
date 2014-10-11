@@ -16,6 +16,8 @@ game.resources = [
     {name: "stars",  type:"image", src: "data/img/star.png"},
     {name: "star-gate",  type:"image", src: "data/img/star-gate.png"},
 
+    //font
+    {name: "32x32_font", type:"image", src: "data/img/font/32x32_font.png"},
 
 
 
