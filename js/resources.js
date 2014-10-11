@@ -12,7 +12,7 @@ game.resources = [
     {name: "bg-sm",  type:"image", src: "data/map/bg-sm.png"},
     //you spritesheet
     {name: "self-walk-short",  type:"image", src: "data/img/self-walk-short.png"},
-    {name: "star",  type:"image", src: "roughimages/s1.png"},
+    {name: "npc-walk",  type:"image", src: "data/img/npc-walk.png"},
     {name: "stars",  type:"image", src: "data/img/star.png"},
 
 
