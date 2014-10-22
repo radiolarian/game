@@ -47,7 +47,7 @@ var game = {
 	    me.pool.register("mainPlayer", game.PlayerEntity);
    	    me.pool.register("CoinEntity", game.CoinEntity);
    	    me.pool.register("EnemyEntity", game.EnemyEntity);
-   	    me.pool.register("FriendlyEntity", game.EnemyEntity);
+   	    me.pool.register("FriendlyEntity", game.FriendlyEntity);
    	    me.pool.register("StarGateEntity", game.StarGateEntity);
 
 	    // enable the keyboard

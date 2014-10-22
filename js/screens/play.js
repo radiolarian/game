@@ -4,7 +4,8 @@ game.PlayScreen = me.ScreenObject.extend({
 	 */
 	onResetEvent: function() {
 		//load level
-		me.levelDirector.loadLevel("spring");
+		me.levelDirector.loadLevel("summer");
+		//currently switch between area01, spring, summer
 
 		// DEBUG IS HERE!!!!!!!!!!!!!!!!!!!!!
 		game.data.score = 0;

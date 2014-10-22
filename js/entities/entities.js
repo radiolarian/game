@@ -104,6 +104,10 @@ game.PlayerEntity = me.Entity.extend({
                 this.renderable.flicker(750);
             }
         }
+    } else if (response.b.body.collisionType === me.collision.types.NPC_OBJECT) {
+            // bounce (force jump)
+            this.body.falling = false;
+            this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
     }
     },
 
@@ -190,9 +194,9 @@ game.FriendlyEntity = me.Entity.extend({
         this.walkLeft = false;
  
         // walking & jumping speed
-        this.body.setVelocity(4, 6);
-        this.font = new me.BitmapFont("32x32_font", 32);
-        this.type = 'enemy';
+        this.body.setVelocity(1, 1);
+        //this.body.setMaxVelocity(0, 0);
+        this.body.collisionType = me.collision.types.NPC_OBJECT;
          
     },
     /**
