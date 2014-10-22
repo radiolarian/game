@@ -6,20 +6,30 @@ game.resources = [
 	 */
 	 //level tileset
     {name: "fall-tiles",  type:"image", src: "data/map/fall-tiles.png"},
+    {name: "summer-tiles",  type:"image", src: "data/map/spring-tiles.png"},
+    {name: "spring-tiles",  type:"image", src: "data/map/spring-tiles.png"},
+
     // our metatiles
     {name: "collision-tiles",  type:"image", src: "data/map/collision-tiles.png"},
+
     //background
     {name: "bg-sm",  type:"image", src: "data/map/bg-sm.png"},
     {name: "winter-bg", type: "image", src: "data/map/winter-bg.png"},
+    {name: "spring",  type:"image", src: "data/map/spring.png"},
+
     //you spritesheet
     {name: "self-walk-short",  type:"image", src: "data/img/self-walk-short.png"},
+    {name: "summer-self-walk",  type:"image", src: "data/img/summer-self-walk.png"},
+    {name: "spring-self-walk",  type:"image", src: "data/img/spring-self-walk.png"},
+
     {name: "npc-walk",  type:"image", src: "data/img/npc-walk.png"},
+    {name: "summer-npc-walk",  type:"image", src: "data/img/summer-npc-walk.png"},
+    {name: "spring-npc-walk",  type:"image", src: "data/img/summer-npc-walk.png"},
+
     {name: "stars",  type:"image", src: "data/img/stars.png"},
     {name: "star-gate",  type:"image", src: "data/img/star-gate.png"},
-    {name: "transp", type:"image", src:"data/img/transp.png"},
     //font
-    {name: "32x32_font", type:"image", src: "data/img/font/32x32_font.png"},
-
+    {name: "32x32_font", type:"image", src: "data/img/font/idek.png"},
 
 
 	/* Atlases 
@@ -34,12 +44,14 @@ game.resources = [
  	 */
     {name: "area01", type: "tmx", src: "data/area01.tmx"},
     {name: "alpha", type: "tmx", src: "data/alpha.tmx"},
+    {name: "spring", type: "tmx", src: "data/spring.tmx"},
+
 
 	/* Background music. 
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/"},
 	 */	
-	{name: "fall", type: "audio", src: "data/bgm/"},
+	//{name: "fall", type: "audio", src: "data/bgm/"},
 
 	/* Sound effects. 
 	 * @example

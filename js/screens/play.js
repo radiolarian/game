@@ -4,14 +4,14 @@ game.PlayScreen = me.ScreenObject.extend({
 	 */
 	onResetEvent: function() {
 		//load level
-		me.levelDirector.loadLevel("area01");
+		me.levelDirector.loadLevel("spring");
 
 		// DEBUG IS HERE!!!!!!!!!!!!!!!!!!!!!
 		game.data.score = 0;
 		game.data.textBox = "HI";
 
 		//music
-		me.audio.playTrack("fall");
+		//me.audio.playTrack("fall");
 
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();

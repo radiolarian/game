@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="91" height="15" tilewidth="32" tileheight="32" backgroundcolor="#fff4ff">
- <properties>
-  <property name="image" value="npc-walk"/>
- </properties>
  <tileset firstgid="1" name="fall-tiles" tilewidth="32" tileheight="32">
   <image source="map/fall-tiles.png" width="128" height="160"/>
  </tileset>
@@ -120,101 +117,25 @@
   <object name="CoinEntity" x="2847" y="61" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="enemyEntity">
-  <object name="EnemyEntity" x="191" y="90" width="160" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="109" y="218" width="160" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="371" y="351" width="280" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="673" y="62" width="160" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="764" y="62" width="160" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="1340" y="349" width="200" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="1510" y="348" width="160" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="1879" y="25" width="160" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="1826" y="347" width="160" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="2064" y="350" width="160" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="2384" y="349" width="280" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="2486" y="218" width="140" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="2263" y="68" width="120" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="2718" y="118" width="140" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="1097" y="348" width="200" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="667" y="350" width="200" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="903" y="347" width="160" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="2306" y="281" width="100" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
-  <object name="EnemyEntity" x="1146" y="123" width="150" height="64">
-   <properties>
-    <property name="image" value="npc-walk"/>
-   </properties>
-  </object>
+  <object name="EnemyEntity" x="191" y="90" width="160" height="64"/>
+  <object name="EnemyEntity" x="109" y="218" width="160" height="64"/>
+  <object name="EnemyEntity" x="371" y="351" width="280" height="64"/>
+  <object name="EnemyEntity" x="673" y="62" width="160" height="64"/>
+  <object name="EnemyEntity" x="764" y="62" width="160" height="64"/>
+  <object name="EnemyEntity" x="1340" y="349" width="200" height="64"/>
+  <object name="EnemyEntity" x="1510" y="348" width="160" height="64"/>
+  <object name="EnemyEntity" x="1879" y="25" width="160" height="64"/>
+  <object name="EnemyEntity" x="1826" y="347" width="160" height="64"/>
+  <object name="EnemyEntity" x="2064" y="350" width="160" height="64"/>
+  <object name="EnemyEntity" x="2384" y="349" width="280" height="64"/>
+  <object name="EnemyEntity" x="2486" y="218" width="140" height="64"/>
+  <object name="EnemyEntity" x="2263" y="68" width="120" height="64"/>
+  <object name="EnemyEntity" x="2718" y="118" width="140" height="64"/>
+  <object name="EnemyEntity" x="1097" y="348" width="200" height="64"/>
+  <object name="EnemyEntity" x="667" y="350" width="200" height="64"/>
+  <object name="EnemyEntity" x="903" y="347" width="160" height="64"/>
+  <object name="EnemyEntity" x="2306" y="281" width="100" height="64"/>
+  <object name="EnemyEntity" x="1146" y="123" width="150" height="64"/>
  </objectgroup>
  <objectgroup name="me.LevelEntity">
   <object name="StarGateEntity" x="2753" y="282" width="32" height="64">

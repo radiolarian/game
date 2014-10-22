@@ -6,7 +6,6 @@
 
 game.HUD = game.HUD || {};
 
-
 game.HUD.Container = me.Container.extend({
 
 	init: function() {
@@ -26,16 +25,16 @@ game.HUD.Container = me.Container.extend({
 		this.name = "HUD";
 		
 		// add our child score object at the top left corner
-		this.addChild(new game.HUD.ScoreItem(10, 430));
-		this.addChild(new game.HUD.TextItem(150, 430));
+		this.addChild(new game.HUD.ScoreItem(10, 435));
+		this.addChild(new game.HUD.TextItem(120, 435));
 	}
 });
 
 game.HUD.TextItem = me.Renderable.extend({
 	init: function(x, y) {
 		this._super(me.Renderable, 'init', [x, y, 10, 10]);
-		this.font = new me.BitmapFont("32x32_font", 32);
-		this.font.set("left");
+		this.font = new me.BitmapFont("32x32_font", 19.4);
+		//this.font.set("left");
 		this.textBox = 0;
 		this.floating = true;
 	},
@@ -47,14 +46,14 @@ game.HUD.TextItem = me.Renderable.extend({
 		return false;
 	},
 	draw : function (context) {
-		this.font.draw (context, game.data.textBox, this.pos.x, this.pos.y);
+		this.font.draw(context, game.data.textBox, this.pos.x, this.pos.y);
 	}
 });
 
 game.HUD.ScoreItem = me.Renderable.extend({	
 	init: function(x, y) {
 		this._super(me.Renderable, 'init', [x, y, 10, 10]); 
-        this.font = new me.BitmapFont("32x32_font", 32);
+        this.font = new me.BitmapFont("32x32_font", 19.4);
         this.font.set("left");
 		this.score = -1;
 		this.floating = true;
