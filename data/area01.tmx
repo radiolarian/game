@@ -83,7 +83,7 @@
   <object name="mainplayer" x="33.464" y="253.7" width="28" height="45" rotation="1">
    <properties>
     <property name="image" value="self-walk-short"/>
-    <property name="spriteheight" value="58"/>
+    <property name="spriteheight" value="64"/>
     <property name="spritewidth" value="64"/>
    </properties>
   </object>

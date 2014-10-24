@@ -53,9 +53,12 @@ game.resources = [
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/"},
 	 */	
-	//{name: "fall", type: "audio", src: "data/bgm/"},
-
-	/* Sound effects. 
+	{name: "fall", type: "audio", src: "data/bgm/"},
+    {name: "summer", type: "audio", src: "data/bgm/"},
+    {name: "spring", type: "audio", src: "data/bgm/"},
+    {name: "winter", type: "audio", src: "data/bgm/"},
+	
+    /* Sound effects. 
 	 * @example
 	 * {name: "example_sfx", type: "audio", src: "data/sfx/"}
 	 */
