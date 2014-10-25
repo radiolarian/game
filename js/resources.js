@@ -52,7 +52,7 @@ game.resources = [
     {name: "spring", type: "tmx", src: "data/spring.tmx"},
     {name: "summer", type: "tmx", src: "data/summer.tmx"},
     {name: "winter", type: "tmx", src: "data/winter.tmx"},
-
+    {name: "finwinter", type: "tmx", src: "data/finwinter.tmx"},
 
 	/* Background music. 
 	 * @example

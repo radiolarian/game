@@ -28,6 +28,13 @@
   </data>
  </layer>
  <objectgroup name="player">
+  <object name="mainplayer" x="2" y="390" width="29" height="23">
+   <properties>
+    <property name="image" value="self-summer-walk"/>
+    <property name="spriteheight" value="64"/>
+    <property name="spritewidth" value="64"/>
+   </properties>
+  </object>
   <object name="FriendlyEntity" x="33" y="344" width="1311" height="71">
    <properties>
     <property name="image" value="self-walk-short"/>
@@ -73,13 +80,6 @@
   <object name="StillEntity" x="1246.5" y="353" width="33" height="64">
    <properties>
     <property name="image" value="self-walk-short"/>
-    <property name="spriteheight" value="64"/>
-    <property name="spritewidth" value="64"/>
-   </properties>
-  </object>
-  <object name="mainplayer" x="129" y="225" width="24" height="54" rotation="1">
-   <properties>
-    <property name="image" value="summer-self-walk"/>
     <property name="spriteheight" value="64"/>
     <property name="spritewidth" value="64"/>
    </properties>
