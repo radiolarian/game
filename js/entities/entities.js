@@ -194,7 +194,7 @@ game.CoinEntity = me.CollectableEntity.extend({
     // an object is touched by something (here collected)
     onCollision: function() {
         // do something when collected
-        game.data.score += 99; //LOOK HERE
+        game.data.score += 1; //LOOK HERE
         game.data.numCollected += 1;
         me.audio.play("cling");
         // make sure it cannot be collected "again"
@@ -440,7 +440,7 @@ game.BossEntity = me.Entity.extend({
                     //me.game.world.removeChild(s);
                     game.data.cutScene = false;
                     game.data.hacky.onDestroyEvent();
-                    game.data.starGate.goTo("spring"); //TODO obviously don't go to spring
+                    game.data.starGate.goTo("fall-easy"); //TODO obviously don't go to spring
             } else if(action === "right") {
                 this.counter = 0;
                 game.data.triggerBreakGate = 300;
@@ -474,7 +474,14 @@ game.StarGateEntity = me.LevelEntity.extend({
     },
     onCollision : function () {
         if (game.data.level == "FALL") {
-            this.goTo("alpha");
+            if (game.data.score > 25)
+                game.data.textBox = "YOU BROKE THE GAME!"
+            else if (game.data.numCollected>29)
+                this.goTo("alpha");
+            else {
+                var calc = 25 - game.data.score;
+                game.data.textBox = "NEED " + calc + " MORE STARS";                
+            }
         } else {
             if (game.data.score > 24) {
                 game.data.score = 0;
@@ -487,7 +494,8 @@ game.StarGateEntity = me.LevelEntity.extend({
                     return;
                 } else if (game.data.level == "SPRING"){
                     game.data.level = "SUMMER";
-                    this.goTo("SUMMER");
+                    game.data.numCollected = 0;
+                    this.goTo("summer");
                     me.audio.pauseTrack();
                     me.audio.playTrack("summer");
                     return;

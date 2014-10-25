@@ -5,8 +5,8 @@ var game = {
 	// an object where to store game information
 	data : {
 		// score
-		level: "SPRING", 
-		score : 99,
+		level: "FALL", 
+		score : 0,
 		textBox : "HI",
 		numCollected : 0,
 		cutScene: false,
