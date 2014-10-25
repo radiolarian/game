@@ -105,7 +105,7 @@ game.PlayerEntity = me.Entity.extend({
                 var texts = ["\"WHY DO YOU LOOK LIKE THAT?\"", "\"WHAT'S WITH YOUR HAIR?\"", 
                             "\"ARE YOU A BOY OR A GIRL?\"", "\"TAKE OFF THE COSTUME.\"", "\"I JUST TOUCHED IT!\""];
                 } else { //FALL
-                    var texts = ["\"YOU'RE JUST CONFUSED.\"","\"WATCH IT FREAK\"", "\"NOONE WANTS TO BE AROUND YOU.\"", 
+                    var texts = ["\"YOU'RE JUST CONFUSED.\"","\"WATCH IT FREAK\"", "\"NO ONE WANTS TO BE AROUND YOU.\"", 
                                 "\"WHY DO YOU EVEN SHOW UP?\"", "\"WHAT ARE YOU?\"", "\"YOU DON'T BELONG HERE.\"", "\"STOP WITH THE ACT.\""];
                 } 
                 var i = Math.floor(Math.random()*texts.length);
@@ -289,7 +289,12 @@ game.EnemyEntity = me.Entity.extend({
         this.walkLeft = false;
  
         // walking & jumping speed
-        this.body.setVelocity(4, 6);
+        if (game.data.level == 2) { //sumer
+            this.body.setVelocity(2.5, 4);
+        }
+        else { //autumn
+            this.body.setVelocity(4, 6);            
+        }
         this.font = new me.BitmapFont("32x32_font", 32);
         this.type = 'enemy';
          
@@ -342,7 +347,7 @@ game.StarGateEntity = me.LevelEntity.extend({
     onCollision : function () {
         if (game.data.score > 24) {
             //me.levelDirectory.loadLevel("alpha");
-            this.goTo("alpha");
+            this.goTo("area01");
         } else {
             var calc = 25 - game.data.score;
             game.data.textBox = "NEED " + calc + " MORE STARS";
