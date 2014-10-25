@@ -8,6 +8,7 @@ game.resources = [
     {name: "fall-tiles",  type:"image", src: "data/map/fall-tiles.png"},
     {name: "summer-tiles",  type:"image", src: "data/map/summer-tiles.png"},
     {name: "spring-tiles",  type:"image", src: "data/map/spring-tiles.png"},
+    {name: "winter-tiles",  type:"image", src: "data/map/winter-tiles.png"},
 
     // our metatiles
     {name: "collision-tiles",  type:"image", src: "data/map/collision-tiles.png"},
@@ -50,6 +51,7 @@ game.resources = [
     {name: "alpha", type: "tmx", src: "data/alpha.tmx"},
     {name: "spring", type: "tmx", src: "data/spring.tmx"},
     {name: "summer", type: "tmx", src: "data/summer.tmx"},
+    {name: "winter", type: "tmx", src: "data/winter.tmx"},
 
 
 	/* Background music. 
