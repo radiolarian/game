@@ -4,12 +4,13 @@ game.PlayScreen = me.ScreenObject.extend({
 	 */
 	onResetEvent: function() {
 		//load level
-		me.levelDirector.loadLevel("spring");
+		me.levelDirector.loadLevel("alpha");
 		//currently switch between area01, spring, summer
 
 		// DEBUG IS HERE!!!!!!!!!!!!!!!!!!!!!
 		game.data.score = 0;
-		game.data.textBox = "HI";
+		game.data.numCollected = 0;
+		game.data.textBox = "";
 
 		//music
 		me.audio.playTrack("fall");

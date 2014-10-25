@@ -24,6 +24,7 @@ game.PlayerEntity = me.Entity.extend({
         this.font = new me.BitmapFont("32x32_font", 32);
         this.type = 'self';
         this.ghostFlicker = 0;
+        game.data.player = this;
 
     },
  
@@ -33,11 +34,10 @@ game.PlayerEntity = me.Entity.extend({
  
     ------ */
     update: function(dt) {
-        console.log(this.ghostFlicker);
         if (this.ghostFlicker > 0) {
             this.ghostFlicker --;
         }
-        if (!this.renderable.isFlickering() && this.ghostFlicker <= 0) {
+        if (!this.renderable.isFlickering() && this.ghostFlicker <= 0 && !game.data.cutScene) {
             game.data.textBox = "";
         }
         if (me.input.isKeyPressed('left')) {
@@ -174,7 +174,8 @@ game.CoinEntity = me.CollectableEntity.extend({
     // an object is touched by something (here collected)
     onCollision: function() {
         // do something when collected
-        game.data.score += 1;
+        game.data.score += 99; //LOOK HERE
+        game.data.numCollected += 1;
         me.audio.play("cling");
         // make sure it cannot be collected "again"
         this.body.setCollisionMask(me.collision.types.NO_OBJECT);
@@ -255,6 +256,43 @@ game.FriendlyEntity = me.Entity.extend({
       //  return false; 
 });
 
+game.StillEntity = me.Entity.extend({
+    init: function(x, y, settings) {
+        // define this here instead of tiled
+         
+        // save the area size defined in Tiled
+        var width = settings.width;
+        var height = settings.height;
+ 
+        // adjust the size setting information to match the sprite size
+        // so that the entity object is created with the right size
+        settings.spritewidth = settings.width = 32;
+        settings.spritewidth = settings.height = 64;
+         
+        // call the parent constructor
+        this._super(me.Entity, 'init', [x, y , settings]);
+ 
+        // walking & jumping speed
+        this.body.setVelocity(1, 1);
+        //this.body.setMaxVelocity(0, 0);
+        this.body.collisionType = me.collision.types.NPC_OBJECT;
+         
+    },
+    /**
+    // call by the engine when colliding with another object
+    // obj parameter corresponds to the other object (typically the player) touching this one
+    onCollision: function(res, obj) {
+ 
+        // res.y >0 means touched by something on the bottom
+        // which mean at top position for this one
+        if (this.alive && (res.y > 0) && obj.falling) {
+            this.renderable.flicker(750);
+        }
+    }, **/
+    update: function(dt) {
+        },
+});
+
 /* --------------------------
 an enemy Entity
 ------------------------ */
@@ -326,7 +364,74 @@ game.EnemyEntity = me.Entity.extend({
 
       //  return false; 
 });
+game.BossEntity = me.Entity.extend({
+    init: function(x, y, settings) {
+        // define this here instead of tiled
+         
+        // save the area size defined in Tiled
+        var width = settings.width;
+        var height = settings.height;
+ 
+        // adjust the size setting information to match the sprite size
+        // so that the entity object is created with the right size
+        settings.spritewidth = settings.width = 32;
+        settings.spritewidth = settings.height = 64;
+         
+        // call the parent constructor
+        this._super(me.Entity, 'init', [x, y , settings]);
+         
+        // set start/end position based on the initial area size
+        x = 5;
+        this.startX = 5;
+        this.endX   = 15;
+        //this.pos.x  = x + width - settings.spritewidth; 
+ 
+        // manually update the entity bounds as we manually change the position
+        this.updateBounds();
+ 
+        // to remember which side we were walking
+        this.walkLeft = false;
+        this.counter = 0;
+ 
+        // walking & jumping speed
+        this.body.setVelocity(1, 6);
+        this.font = new me.BitmapFont("32x32_font", 32);
+        this.type = 'enemy';
+         game.data.cutScene = true;
+    },
+    update: function(dt) {
+        this.counter++;
+        game.data.player.flicker(450);
+        if (this.counter == 300) {
+                game.data.textBox = "\"HELLO.\"";
+            }
+        if (this.counter == 500)
+            game.data.textBox = "MORE TEXT HERE";
+        if (this.counter == 700)
+            game.data.textBox = "ETC";
+        if (this.counter == 900) {
+            game.data.textBox = "<- YES OR -> NO";
+            if (me.input.isKeyPressed('left')) {
+                this.goto("spring"); //TODO obviously don't go to spring
+            } else if(me.input.isKeyPressed('right')) {
+                this.counter = 0;
+                game.data.player.flicker(450);
 
+            }
+        }
+        // make it walk
+        this.flipX(this.walkLeft);
+        this.body.vel.x += (this.walkLeft) ? -this.body.accel.x * me.timer.tick : this.body.accel.x * me.timer.tick;             
+        // update the body movement
+        this.body.update(dt);   
+        // update animation if necessary
+        if (this.body.vel.x!=0 || this.body.vel.y!=0) {
+            // update object animation
+            this._super(me.Entity, 'update', [dt]);
+            return true;
+            }
+        },
+});
 game.StarGateEntity = me.LevelEntity.extend({
     init : function (x, y, settings) {
         // Call super constructor
@@ -338,12 +443,26 @@ game.StarGateEntity = me.LevelEntity.extend({
         this.duration = 250;
     },
     onCollision : function () {
-        if (game.data.score > 24) {
-            //me.levelDirectory.loadLevel("alpha");
+        if (game.data.level == "FALL") {
             this.goTo("alpha");
         } else {
-            var calc = 25 - game.data.score;
-            game.data.textBox = "NEED " + calc + " MORE STARS";
+            if (game.data.score > 24) {
+                game.data.score = 0;
+                //LOOK HERE ^^
+                console.log(game.data.level);
+                if (game.data.level == "SUMMER") {
+                    game.data.level = "FALL";
+                    this.goTo("area01");
+                    return;
+                } else if (game.data.level == "SPRING"){
+                    game.data.level = "SUMMER";
+                    this.goTo("SUMMER");
+                    return;
+                }
+            } else {
+                var calc = 25 - game.data.score;
+                game.data.textBox = "NEED " + calc + " MORE STARS";
+            }
         }
     }   
 }); 

@@ -32,6 +32,9 @@ game.resources = [
     //font
     {name: "32x32_font", type:"image", src: "data/img/font/idek.png"},
 
+    //still NPCs
+    {name: "npc-still",  type:"image", src: "roughimages/b2.png"},
+
 
 	/* Atlases 
 	 * @example

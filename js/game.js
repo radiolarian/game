@@ -5,10 +5,12 @@ var game = {
 	// an object where to store game information
 	data : {
 		// score
-		level: 1, //1 = spring, 2 = summer, 3 = winter
+		level: "FALL", 
 		score : 99,
 		textBox : "HI",
-		//ghostFlicker : 0
+		numCollected : 0,
+		cutScene: false,
+		player: null,
 	},
 	
 	
@@ -52,6 +54,8 @@ var game = {
    	    me.pool.register("CoinEntity", game.CoinEntity);
    	    me.pool.register("EnemyEntity", game.EnemyEntity);
    	    me.pool.register("FriendlyEntity", game.FriendlyEntity);
+   	    me.pool.register("StillEntity", game.StillEntity);
+   	    me.pool.register("BossEntity", game.BossEntity);
    	    me.pool.register("StarGateEntity", game.StarGateEntity);
 
 	    // enable the keyboard
