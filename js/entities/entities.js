@@ -96,7 +96,7 @@ game.PlayerEntity = me.Entity.extend({
         else {
             // let's flicker in case we touched an enemy
             if (!this.renderable.isFlickering()) {
-                if (data.level == 2) { //SUMMER
+                if (game.data.level == 2) { //SUMMER
                 var texts = ["\"BAD1\"","\"BAD2\"", "\"BAD3\""];
                 } else { //FALL
                     var texts = ["\"BAD1\"","\"BAD2\"", "\"BAD3\""];
