@@ -44,9 +44,10 @@ game.PlayerEntity = me.Entity.extend({
             }
             game.data.triggerBreakGate--;
             if (this.breakGate == 20) {
-                me.game.viewport.fadeOut("#ffffff");
+                me.game.viewport.fadeOut("#ffffff", 500);
                 game.data.hacky.onDestroyEvent();
-                game.data.textBox = "";game.world.removeChild(this);
+                game.data.textBox = "";
+                //game.world.removeChild(this);
                 game.data.starGate.goTo("spring");
             }
         }
@@ -431,7 +432,7 @@ game.BossEntity = me.Entity.extend({
             game.data.textBox = "MORE TEXT HERE";
         if (this.counter == 700)
             game.data.textBox = "ETC";
-        if (this.counter == 9) {
+        if (this.counter == 900) {
             game.data.hacky = this;
             game.data.textBox = "<- YES OR -> NO";
             this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
@@ -443,7 +444,7 @@ game.BossEntity = me.Entity.extend({
             } else if(action === "right") {
                 this.counter = 0;
                 game.data.triggerBreakGate = 300;
-                game.data.textBox = "GO THROUGH THE GATE!";
+                game.data.textBox = "GO RIGHT THROUGH THE GATE!";
             }
             });           
         }

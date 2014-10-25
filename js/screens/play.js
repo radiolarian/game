@@ -4,7 +4,7 @@ game.PlayScreen = me.ScreenObject.extend({
 	 */
 	onResetEvent: function() {
 		//load level
-		me.levelDirector.loadLevel("spring");
+		me.levelDirector.loadLevel("alpha");
 		//currently switch between area01, spring, summer, winter
 
 
