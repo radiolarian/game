@@ -103,7 +103,7 @@ game.PlayerEntity = me.Entity.extend({
             if (!this.renderable.isFlickering()) {
                 if (game.data.level == 2) { //SUMMER
                 var texts = ["\"WHY DO YOU LOOK LIKE THAT?\"", "\"WHAT'S WITH YOUR HAIR?\"", 
-                            "\"ARE YOU A BOY OR A GIRL?\"", "\"TAKE OFF THE COSTUME?\"", "\"I JUST TOUCHED IT!\""];
+                            "\"ARE YOU A BOY OR A GIRL?\"", "\"TAKE OFF THE COSTUME.\"", "\"I JUST TOUCHED IT!\""];
                 } else { //FALL
                     var texts = ["\"YOU'RE JUST CONFUSED.\"","\"WATCH IT FREAK\"", "\"NOONE WANTS TO BE AROUND YOU.\"", 
                                 "\"WHY DO YOU EVEN SHOW UP?\"", "\"WHAT ARE YOU?\"", "\"YOU DON'T BELONG HERE.\"", "\"STOP WITH THE ACT.\""];
@@ -120,7 +120,7 @@ game.PlayerEntity = me.Entity.extend({
             if (game.data.level == 1) { //SPRING
                 var texts = ["\"OOPSIES SORRY!\"","\"WEEEEE LETS PLAY TOGETHER!\"", "\"HAHA YOU HAVE COOL HAIR!\"", "\"I NEED TO PEE\"", "\"TAG YOU'RE IT!\"", "\"STARS ARE SO COOL!\""];
                 } else { //SUMMER
-                    var texts = ["\"SORRY\"","\"HEY HOW ARE YA?\"", "\"MY BAD!\""];
+                    var texts = ["\"SORRY\"","\"HEY HOW ARE YA?\"", "\"MY BAD!\"", "\"LOOKIN GOOD TODAY!\""];
                 }
             var i = Math.floor(Math.random()*texts.length);
             game.data.textBox = texts[i];
