@@ -28,12 +28,9 @@ game.PlayerEntity = me.Entity.extend({
         this.type = 'self';
         this.ghostFlicker = 0;
         game.data.player = this;
-<<<<<<< HEAD
         this.counter = 0;
         this.is_walking = true;
-=======
         this.breakGate = 0;
->>>>>>> FETCH_HEAD
 
     },
  
@@ -43,7 +40,6 @@ game.PlayerEntity = me.Entity.extend({
  
     ------ */
     update: function(dt) {
-<<<<<<< HEAD
         //END CREDITS
         if (game.data.level=="WINTER" || game.data.level=="WINTER2") {
             if (this.is_walking) {
@@ -91,7 +87,7 @@ game.PlayerEntity = me.Entity.extend({
                 this.is_walking = false;
                 this.body.vel.x = 0;
             }
-=======
+
         if (game.data.triggerBreakGate > 0) {
 
             if (game.data.triggerBreakGate == 300) {
@@ -128,7 +124,6 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x += this.body.accel.x * me.timer.tick;
         } else {
          this.body.vel.x = 0;
->>>>>>> FETCH_HEAD
         }
         else {
             if (this.ghostFlicker > 0) {
