@@ -7,7 +7,8 @@ var game = {
 		// score
 		level: 1, //1 = spring, 2 = summer, 3 = winter
 		score : 99,
-		textBox : "HI"
+		textBox : "HI",
+		//ghostFlicker : 0
 	},
 	
 	
