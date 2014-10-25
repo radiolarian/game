@@ -5,7 +5,7 @@ var game = {
 	// an object where to store game information
 	data : {
 		// score
-		level: "SPRING", 
+		level: "WINTER2", //CHANGEBACK 
 		score : 99,
 		textBox : "HI",
 		numCollected : 0,
@@ -57,6 +57,7 @@ var game = {
    	    me.pool.register("StillEntity", game.StillEntity);
    	    me.pool.register("BossEntity", game.BossEntity);
    	    me.pool.register("StarGateEntity", game.StarGateEntity);
+   	    me.pool.register("EndStillEntity", game.EndStillEntity);
 
 	    // enable the keyboard
 	    me.input.bindKey(me.input.KEY.LEFT,  "left");

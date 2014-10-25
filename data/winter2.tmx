@@ -72,7 +72,7 @@
   </object>
   <object name="mainplayer" x="15" y="364" width="24" height="58">
    <properties>
-    <property name="image" value="self-walk-short"/>
+    <property name="image" value="you-as-npc-walk"/>
     <property name="spriteheight" value="64"/>
     <property name="spritewidth" value="64"/>
    </properties>

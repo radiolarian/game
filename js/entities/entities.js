@@ -12,10 +12,13 @@ game.PlayerEntity = me.Entity.extend({
     init: function(x, y, settings) {
         // call the constructor
         this._super(me.Entity, 'init', [x, y, settings]);
-        this.z = 10;
+        this.z = 50;
         // set the default horizontal & vertical speed (accel vector)
         this.body.setVelocity(3, 15);
- 
+        if (game.data.level=="WINTER" || game.data.level=="WINTER2") {
+            this.body.setVelocity(1, 3);
+        }
+
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
  
@@ -25,6 +28,8 @@ game.PlayerEntity = me.Entity.extend({
         this.type = 'self';
         this.ghostFlicker = 0;
         game.data.player = this;
+        this.counter = 0;
+        this.is_walking = true;
 
     },
  
@@ -34,40 +39,91 @@ game.PlayerEntity = me.Entity.extend({
  
     ------ */
     update: function(dt) {
-        if (this.ghostFlicker > 0) {
-            this.ghostFlicker --;
-        }
-        if (!this.renderable.isFlickering() && this.ghostFlicker <= 0 && !game.data.cutScene) {
-            game.data.textBox = "";
-        }
-        if (me.input.isKeyPressed('left')) {
-            this.hit = false;
-            // flip the sprite on horizontal axis
-            this.flipX(true);
-            // update the entity velocity
-            this.body.vel.x -= this.body.accel.x * me.timer.tick;
-        } else if (me.input.isKeyPressed('right')) {
-            // unflip the sprite
-            this.hit = false;
-            this.flipX(false);
-            // update the entity velocity
-            this.body.vel.x += this.body.accel.x * me.timer.tick;
-        } else {
-         this.body.vel.x = 0;
-        }
-     
-        if (me.input.isKeyPressed('jump')) {
-
-            // make sure we are not already jumping or falling
-            if (!this.body.jumping && !this.body.falling) {
-                // set current vel to the maximum defined value
-                // gravity will then do the rest
-                this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
-                // set the jumping flag
-                this.body.jumping = true;
+        //END CREDITS
+        if (game.data.level=="WINTER" || game.data.level=="WINTER2") {
+            if (this.is_walking) {
+                this.body.vel.x += this.body.accel.x * me.timer.tick;
+                if (this.counter % 10 == 0) {
+                    game.data.score++;
+                 }   
             }
- 
+            this.counter++;
+            if (this.counter == 205) {
+                game.data.textBox = "\"I WANNA BE THE ULTIMATE";
+                }
+            if (this.counter == 280) {
+                    game.data.textBox = "STAR COLLECTOR!\"";
+                }                
+            if (this.counter == 420)
+                game.data.textBox = "ULTIMATE STAR COLLECTOR:";
+            if (this.counter == 480)
+                game.data.textBox = "WINNER OF THE UNIVERSE";  
+            if (this.counter == 540)
+                game.data.textBox = "MADE FOR QGCON2014"; 
+
+            if (this.counter == 630 && game.data.level == "WINTER")
+                game.data.textBox = "\"YOU DON'T LOOK LIKE";
+            if (this.counter == 705 && game.data.level == "WINTER")
+                game.data.textBox = "THE REST OF US.\"";
+
+            if (this.counter == 630 && game.data.level == "WINTER2")
+                game.data.textBox = "\"WHAT'S UP BRO.\"";
+
+            if (this.counter == 840) {
+                game.data.textBox = "BY NOON, CEREY & VULVASAUR";
+            }
+
+            if (this.counter == 1050 && game.data.level == "WINTER") {
+                game.data.textBox = "WHAT HAVE YOU GAINED?";
+            }
+
+            if (this.counter == 1050 && game.data.level == "WINTER2") {
+                game.data.textBox = "NICE LOOK.";
+            }
+
+            if (this.counter == 1260) {
+                game.data.textBox = "THANKS FOR PLAYING.";
+                this.is_walking = false;
+                this.body.vel.x = 0;
+            }
         }
+        else {
+            if (this.ghostFlicker > 0) {
+                this.ghostFlicker --;
+            }
+            if (!this.renderable.isFlickering() && this.ghostFlicker <= 0 && !game.data.cutScene) {
+                game.data.textBox = "";
+            }
+            if (me.input.isKeyPressed('left')) {
+                this.hit = false;
+                // flip the sprite on horizontal axis
+                this.flipX(true);
+                // update the entity velocity
+                this.body.vel.x -= this.body.accel.x * me.timer.tick;
+            } else if (me.input.isKeyPressed('right')) {
+                // unflip the sprite
+                this.hit = false;
+                this.flipX(false);
+                // update the entity velocity
+                this.body.vel.x += this.body.accel.x * me.timer.tick;
+            } else {
+             this.body.vel.x = 0;
+            }
+         
+            if (me.input.isKeyPressed('jump')) {
+
+                // make sure we are not already jumping or falling
+                if (!this.body.jumping && !this.body.falling) {
+                    // set current vel to the maximum defined value
+                    // gravity will then do the rest
+                    this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
+                    // set the jumping flag
+                    this.body.jumping = true;
+                }
+     
+            }
+        }
+
 
 
         // check & update player movement
@@ -132,6 +188,9 @@ game.PlayerEntity = me.Entity.extend({
                 this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
         }
         }
+    }
+    else if (response.b.body.collisionType === me.collision.types.END) {
+
     }
     },
 
@@ -295,6 +354,46 @@ game.StillEntity = me.Entity.extend({
     update: function(dt) {
         },
 });
+
+
+
+game.EndStillEntity = me.Entity.extend({
+    init: function(x, y, settings) {
+        // define this here instead of tiled
+         
+        // save the area size defined in Tiled
+        var width = settings.width;
+        var height = settings.height;
+ 
+        // adjust the size setting information to match the sprite size
+        // so that the entity object is created with the right size
+        settings.spritewidth = settings.width = 32;
+        settings.spritewidth = settings.height = 64;
+         
+        // call the parent constructor
+        this._super(me.Entity, 'init', [x, y , settings]);
+ 
+        // walking & jumping speed
+        this.body.setVelocity(1, 1);
+        //this.body.setMaxVelocity(0, 0);
+        this.body.collisionType = me.collision.types.END;
+         
+    },
+    /**
+    // call by the engine when colliding with another object
+    // obj parameter corresponds to the other object (typically the player) touching this one
+    onCollision: function(res, obj) {
+ 
+        // res.y >0 means touched by something on the bottom
+        // which mean at top position for this one
+        if (this.alive && (res.y > 0) && obj.falling) {
+            this.renderable.flicker(750);
+        }
+    }, **/
+    update: function(dt) {
+        },
+});
+
 
 /* --------------------------
 an enemy Entity

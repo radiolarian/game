@@ -27,15 +27,25 @@ game.resources = [
     {name: "npc-walk",  type:"image", src: "data/img/npc-walk.png"},
     {name: "summer-npc-walk",  type:"image", src: "data/img/summer-npc-walk.png"},
     {name: "spring-npc-walk",  type:"image", src: "data/img/spring-npc-walk.png"},
+    {name: "you-as-npc-walk",  type:"image", src: "data/img/you-as-npc-walk.png"},
 
     {name: "stars",  type:"image", src: "data/img/stars.png"},
     {name: "star-gate",  type:"image", src: "data/img/star-gate.png"},
+    {name: "blank",  type:"image", src: "data/img/blank.png"},
+    
     //font
     {name: "32x32_font", type:"image", src: "data/img/font/idek.png"},
 
     //still NPCs
     {name: "npc-still",  type:"image", src: "roughimages/b2.png"},
 
+    //ENDING BULLSHIT
+    {name: "smallbad",  type:"image", src: "data/img/end/smallbad.png"},
+    {name: "smallyou",  type:"image", src: "data/img/end/smallyou.png"},
+    {name: "medbad",  type:"image", src: "data/img/end/medbad.png"},
+    {name: "medyou",  type:"image", src: "data/img/end/medyou.png"},
+    {name: "bigbad",  type:"image", src: "data/img/end/bigbad.png"},
+    {name: "bigyou",  type:"image", src: "data/img/end/bigyou.png"},
 
 	/* Atlases 
 	 * @example
@@ -52,6 +62,8 @@ game.resources = [
     {name: "spring", type: "tmx", src: "data/spring.tmx"},
     {name: "summer", type: "tmx", src: "data/summer.tmx"},
     {name: "winter", type: "tmx", src: "data/winter.tmx"},
+    {name: "winter2", type: "tmx", src: "data/winter2.tmx"},
+
 
 	/* Background music. 
 	 * @example
