@@ -102,9 +102,11 @@ game.PlayerEntity = me.Entity.extend({
             // let's flicker in case we touched an enemy
             if (!this.renderable.isFlickering()) {
                 if (game.data.level == 2) { //SUMMER
-                var texts = ["\"BAD1\"","\"BAD2\"", "\"BAD3\""];
+                var texts = ["\"WHY DO YOU LOOK LIKE THAT?\"", "\"WHAT'S WITH YOUR HAIR?\"", 
+                            "\"ARE YOU A BOY OR A GIRL?\"", "\"TAKE OFF THE COSTUME?\"", "\"I JUST TOUCHED IT!\""];
                 } else { //FALL
-                    var texts = ["\"BAD1\"","\"BAD2\"", "\"BAD3\""];
+                    var texts = ["\"YOU'RE JUST CONFUSED.\"","\"WATCH IT FREAK\"", "\"NOONE WANTS TO BE AROUND YOU.\"", 
+                                "\"WHY DO YOU EVEN SHOW UP?\"", "\"WHAT ARE YOU?\"", "\"YOU DON'T BELONG HERE.\"", "\"STOP WITH THE ACT.\""];
                 } 
                 var i = Math.floor(Math.random()*texts.length);
                 game.data.textBox = texts[i];
@@ -116,9 +118,9 @@ game.PlayerEntity = me.Entity.extend({
     } else if (response.b.body.collisionType === me.collision.types.NPC_OBJECT) {
         if (this.ghostFlicker <= 0) {
             if (game.data.level == 1) { //SPRING
-                var texts = ["\"OK1\"","\"OK2\"", "\"OK3\""];
+                var texts = ["\"OOPSIES SORRY!\"","\"WEEEEE LETS PLAY TOGETHER!\"", "\"HAHA YOU HAVE COOL HAIR!\"", "\"I NEED TO PEE\"", "\"TAG YOU'RE IT!\"", "\"STARS ARE SO COOL!\""];
                 } else { //SUMMER
-                    var texts = ["\"OK1\"","\"OK2\"", "\"OK3\""];
+                    var texts = ["\"SORRY\"","\"HEY HOW ARE YA?\"", "\"MY BAD!\""];
                 }
             var i = Math.floor(Math.random()*texts.length);
             game.data.textBox = texts[i];
