@@ -11,6 +11,9 @@ var game = {
 		numCollected : 0,
 		cutScene: false,
 		player: null,
+		starGate: null,
+		triggerBreakGate: 0,
+		hacky: null,
 	},
 	
 	
