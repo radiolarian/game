@@ -401,7 +401,7 @@ game.BossEntity = me.Entity.extend({
     },
     update: function(dt) {
         this.counter++;
-        game.data.player.flicker(450);
+        //game.data.player.flicker(450);
         if (this.counter == 300) {
                 game.data.textBox = "\"HELLO.\"";
             }
