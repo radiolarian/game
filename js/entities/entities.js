@@ -23,6 +23,7 @@ game.PlayerEntity = me.Entity.extend({
         this.alwaysUpdate = true;
         this.font = new me.BitmapFont("32x32_font", 32);
         this.type = 'self';
+        this.ghostFlicker = 0;
 
     },
  
@@ -32,7 +33,11 @@ game.PlayerEntity = me.Entity.extend({
  
     ------ */
     update: function(dt) {
-        if (!this.renderable.isFlickering()) {
+        console.log(this.ghostFlicker);
+        if (this.ghostFlicker > 0) {
+            this.ghostFlicker --;
+        }
+        if (!this.renderable.isFlickering() && this.ghostFlicker <= 0) {
             game.data.textBox = "";
         }
         if (me.input.isKeyPressed('left')) {
@@ -109,9 +114,21 @@ game.PlayerEntity = me.Entity.extend({
             }
         }
     } else if (response.b.body.collisionType === me.collision.types.NPC_OBJECT) {
+        if (this.ghostFlicker <= 0) {
+            if (game.data.level == 1) { //SPRING
+                var texts = ["\"OK1\"","\"OK2\"", "\"OK3\""];
+                } else { //SUMMER
+                    var texts = ["\"OK1\"","\"OK2\"", "\"OK3\""];
+                }
+            var i = Math.floor(Math.random()*texts.length);
+            game.data.textBox = texts[i];
+            this.ghostFlicker = 50;  
+            if (this.body.falling) {   
             // bounce (force jump)
-            this.body.falling = false;
-            this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
+                this.body.falling = false;
+                this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
+        }
+        }
     }
     },
 
