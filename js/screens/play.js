@@ -4,8 +4,13 @@ game.PlayScreen = me.ScreenObject.extend({
 	 */
 	onResetEvent: function() {
 		//load level
+<<<<<<< HEAD
+		me.levelDirector.loadLevel("finwinter");
+		//currently switch between area01, spring, summer, winter
+=======
 		me.levelDirector.loadLevel("spring");
 		//currently switch between area01, spring, summer
+>>>>>>> FETCH_HEAD
 
 		// DEBUG IS HERE!!!!!!!!!!!!!!!!!!!!!
 		game.data.score = 0;
@@ -13,7 +18,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		game.data.textBox = "";
 
 		//music
-		me.audio.playTrack("fall");
+		me.audio.playTrack("winter");
 
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();
