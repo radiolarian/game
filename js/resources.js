@@ -23,6 +23,8 @@ game.resources = [
     {name: "self-walk-short",  type:"image", src: "data/img/self-walk-short.png"},
     {name: "summer-self-walk",  type:"image", src: "data/img/summer-self-walk.png"},
     {name: "spring-self-walk",  type:"image", src: "data/img/spring-self-walk.png"},
+    {name: "you-as-npc-walk",  type:"image", src: "data/img/you-as-npc-walk.png"},
+
 
     {name: "npc-walk",  type:"image", src: "data/img/npc-walk.png"},
     {name: "summer-npc-walk",  type:"image", src: "data/img/summer-npc-walk.png"},
@@ -63,7 +65,7 @@ game.resources = [
     {name: "summer", type: "tmx", src: "data/summer.tmx"},
     {name: "winter", type: "tmx", src: "data/winter.tmx"},
     {name: "winter2", type: "tmx", src: "data/winter2.tmx"},
-
+    {name: "fall-easy", type: "tmx", src: "data/fall-easy.tmx"},
 
 	/* Background music. 
 	 * @example

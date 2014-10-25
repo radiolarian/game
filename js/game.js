@@ -5,12 +5,20 @@ var game = {
 	// an object where to store game information
 	data : {
 		// score
+<<<<<<< HEAD
 		level: "WINTER2", //CHANGEBACK 
 		score : 99,
+=======
+		level: "FALL", 
+		score : 0,
+>>>>>>> FETCH_HEAD
 		textBox : "HI",
 		numCollected : 0,
 		cutScene: false,
 		player: null,
+		starGate: null,
+		triggerBreakGate: 0,
+		hacky: null,
 	},
 	
 	

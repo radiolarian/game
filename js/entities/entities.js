@@ -28,8 +28,12 @@ game.PlayerEntity = me.Entity.extend({
         this.type = 'self';
         this.ghostFlicker = 0;
         game.data.player = this;
+<<<<<<< HEAD
         this.counter = 0;
         this.is_walking = true;
+=======
+        this.breakGate = 0;
+>>>>>>> FETCH_HEAD
 
     },
  
@@ -39,6 +43,7 @@ game.PlayerEntity = me.Entity.extend({
  
     ------ */
     update: function(dt) {
+<<<<<<< HEAD
         //END CREDITS
         if (game.data.level=="WINTER" || game.data.level=="WINTER2") {
             if (this.is_walking) {
@@ -86,6 +91,44 @@ game.PlayerEntity = me.Entity.extend({
                 this.is_walking = false;
                 this.body.vel.x = 0;
             }
+=======
+        if (game.data.triggerBreakGate > 0) {
+
+            if (game.data.triggerBreakGate == 300) {
+                me.game.viewport.shake(25, 300);
+                this.breakGate++;
+                console.log(this.breakGate);
+            }
+            game.data.triggerBreakGate--;
+            if (this.breakGate == 20) {
+                me.game.viewport.fadeOut("#ffffff", 500);
+                game.data.hacky.onDestroyEvent();
+                game.data.textBox = "";
+                //game.world.removeChild(this);
+                game.data.starGate.goTo("spring");
+            }
+        }
+        if (this.ghostFlicker > 0) {
+            this.ghostFlicker --;
+        }
+        if (!this.renderable.isFlickering() && this.ghostFlicker <= 0 && !game.data.cutScene) {
+            game.data.textBox = "";
+        }
+        if (me.input.isKeyPressed('left')) {
+            this.hit = false;
+            // flip the sprite on horizontal axis
+            this.flipX(true);
+            // update the entity velocity
+            this.body.vel.x -= this.body.accel.x * me.timer.tick;
+        } else if (me.input.isKeyPressed('right')) {
+            // unflip the sprite
+            this.hit = false;
+            this.flipX(false);
+            // update the entity velocity
+            this.body.vel.x += this.body.accel.x * me.timer.tick;
+        } else {
+         this.body.vel.x = 0;
+>>>>>>> FETCH_HEAD
         }
         else {
             if (this.ghostFlicker > 0) {
@@ -236,7 +279,7 @@ game.CoinEntity = me.CollectableEntity.extend({
     // an object is touched by something (here collected)
     onCollision: function() {
         // do something when collected
-        game.data.score += 99; //LOOK HERE
+        game.data.score += 1; //LOOK HERE
         game.data.numCollected += 1;
         me.audio.play("cling");
         // make sure it cannot be collected "again"
@@ -501,9 +544,12 @@ game.BossEntity = me.Entity.extend({
         this.type = 'enemy';
          game.data.cutScene = true;
     },
+    onDestroyEvent: function() {
+        console.log("destroyed");
+        me.event.unsubscribe(this.handler);
+    },
     update: function(dt) {
         this.counter++;
-        //game.data.player.flicker(450);
         if (this.counter == 300) {
                 game.data.textBox = "\"HELLO.\"";
             }
@@ -512,14 +558,20 @@ game.BossEntity = me.Entity.extend({
         if (this.counter == 700)
             game.data.textBox = "ETC";
         if (this.counter == 900) {
+            game.data.hacky = this;
             game.data.textBox = "<- YES OR -> NO";
-            if (me.input.isKeyPressed('left')) {
-                this.goto("spring"); //TODO obviously don't go to spring
-            } else if(me.input.isKeyPressed('right')) {
+            this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
+                if (action === "left") {
+                    //me.game.world.removeChild(s);
+                    game.data.cutScene = false;
+                    game.data.hacky.onDestroyEvent();
+                    game.data.starGate.goTo("fall-easy"); //TODO obviously don't go to spring
+            } else if(action === "right") {
                 this.counter = 0;
-                game.data.player.flicker(450);
-
+                game.data.triggerBreakGate = 300;
+                game.data.textBox = "GO RIGHT THROUGH THE GATE!";
             }
+            });           
         }
         // make it walk
         this.flipX(this.walkLeft);
@@ -543,15 +595,22 @@ game.StarGateEntity = me.LevelEntity.extend({
         this.settings = settings;
         this.fade = "#000000";
         this.duration = 250;
+        game.data.starGate = this;
     },
     onCollision : function () {
         if (game.data.level == "FALL") {
-            this.goTo("alpha");
+            if (game.data.score > 25)
+                game.data.textBox = "YOU BROKE THE GAME!"
+            else if (game.data.numCollected>29)
+                this.goTo("alpha");
+            else {
+                var calc = 25 - game.data.score;
+                game.data.textBox = "NEED " + calc + " MORE STARS";                
+            }
         } else {
             if (game.data.score > 24) {
                 game.data.score = 0;
                 //LOOK HERE ^^
-                console.log(game.data.level);
                 if (game.data.level == "SUMMER") {
                     game.data.level = "FALL";
                     this.goTo("area01");
@@ -560,7 +619,8 @@ game.StarGateEntity = me.LevelEntity.extend({
                     return;
                 } else if (game.data.level == "SPRING"){
                     game.data.level = "SUMMER";
-                    this.goTo("SUMMER");
+                    game.data.numCollected = 0;
+                    this.goTo("summer");
                     me.audio.pauseTrack();
                     me.audio.playTrack("summer");
                     return;
