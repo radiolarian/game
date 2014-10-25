@@ -5,7 +5,7 @@ var game = {
 	// an object where to store game information
 	data : {
 		// score
-		level: 1, //1 = spring, 2 = summer, 3 = winter
+		level: 3, //1 = spring, 2 = summer, 3 = winter
 		score : 99,
 		textBox : "HI",
 		//ghostFlicker : 0
