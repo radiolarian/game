@@ -7,13 +7,14 @@ var game = {
 		// score
 		level: "SPRING",
 		score : 0,
-		textBox : "HI",
+		textBox : " ",
 		numCollected : 0,
 		cutScene: false,
 		player: null,
 		starGate: null,
 		triggerBreakGate: 0,
 		hacky: null,
+		mute: false,
 	},
 	
 	

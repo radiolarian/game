@@ -5,8 +5,6 @@ game.PlayScreen = me.ScreenObject.extend({
 	onResetEvent: function() {
 		//load level
 		me.levelDirector.loadLevel("spring");
-		//currently switch between area01, spring, summer, winter
-
 
 		// DEBUG IS HERE!!!!!!!!!!!!!!!!!!!!!
 		game.data.score = 0;
@@ -14,7 +12,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		game.data.textBox = "";
 
 		//music
-		me.audio.playTrack("winter");
+		me.audio.playTrack("spring");
 
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();
@@ -22,20 +20,29 @@ game.PlayScreen = me.ScreenObject.extend({
 		//reset a level and mute
 		me.input.bindKey(me.input.KEY.R, "reset", true);
 		me.input.bindKey(me.input.KEY.M, "mute", true);
-		var is_muted = false;
         this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
             if (action === "reset") {
+            	game.data.numCollected = 0;
             	game.data.score = 0;
                 me.levelDirector.reloadLevel();
+                me.audio.pauseTrack();
+                if (game.data.level == "SPRING")
+                	me.audio.playTrack("spring");
+                if (game.data.level == "SUMMER")
+                	me.audio.playTrack("summer");
+                if (game.data.level == "FALL" || game.data.level == "FALL2")
+                	me.audio.playTrack("fall");                
+                if (game.data.level == "WINTER" || game.data.level == "WINTER2")
+                	me.audio.playTrack("winter");
             }
             if (action === "mute") {
-                if (!is_muted) {
+                if (!game.data.mute) {
                 	me.audio.pauseTrack();
-                	is_muted = true;
+                	game.data.mute = true;
                 }
-                else if (is_muted) {
+                else if (game.data.mute) {
                 	me.audio.resumeTrack();
-                	is_muted = false;
+                	game.data.mute = false;
                 }
             }            
         });		

@@ -9,6 +9,7 @@ game.resources = [
     {name: "summer-tiles",  type:"image", src: "data/map/summer-tiles.png"},
     {name: "spring-tiles",  type:"image", src: "data/map/spring-tiles.png"},
     {name: "winter-tiles",  type:"image", src: "data/map/winter-tiles.png"},
+    {name: "sign",  type:"image", src: "data/map/sign.png"},
 
     // our metatiles
     {name: "collision-tiles",  type:"image", src: "data/map/collision-tiles.png"},
@@ -30,16 +31,13 @@ game.resources = [
     {name: "summer-npc-walk",  type:"image", src: "data/img/summer-npc-walk.png"},
     {name: "spring-npc-walk",  type:"image", src: "data/img/spring-npc-walk.png"},
     {name: "you-as-npc-walk",  type:"image", src: "data/img/you-as-npc-walk.png"},
-
     {name: "stars",  type:"image", src: "data/img/stars.png"},
-    {name: "star-gate",  type:"image", src: "data/img/star-gate.png"},
-    {name: "blank",  type:"image", src: "data/img/blank.png"},
-    
+    {name: "star-gate",  type:"image", src: "data/img/star-gate.png"},    
     //font
     {name: "32x32_font", type:"image", src: "data/img/font/idek.png"},
 
     //still NPCs
-    {name: "npc-still",  type:"image", src: "roughimages/b2.png"},
+    {name: "npc-still",  type:"image", src: "data/img/still.png"},
 
     //ENDING BULLSHIT
     {name: "smallbad",  type:"image", src: "data/img/end/smallbad.png"},

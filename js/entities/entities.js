@@ -32,6 +32,7 @@ game.PlayerEntity = me.Entity.extend({
         this.is_walking = true;
         this.breakGate = 0;
 
+
     },
  
     /* -----
@@ -42,11 +43,9 @@ game.PlayerEntity = me.Entity.extend({
     update: function(dt) {
         //END CREDITS
         if (game.data.level=="WINTER" || game.data.level=="WINTER2") {
+            game.data.score = ""
             if (this.is_walking) {
                 this.body.vel.x += this.body.accel.x * me.timer.tick;
-                if (this.counter % 10 == 0) {
-                    game.data.score++;
-                 }   
             }
             this.counter++;
             if (this.counter == 205) {
@@ -75,11 +74,11 @@ game.PlayerEntity = me.Entity.extend({
             }
 
             if (this.counter == 1050 && game.data.level == "WINTER") {
-                game.data.textBox = "WHAT HAVE YOU GAINED?";
+                game.data.textBox = "\"WHY WOULD YOU CHOOSE THIS?\"";
             }
 
             if (this.counter == 1050 && game.data.level == "WINTER2") {
-                game.data.textBox = "NICE LOOK.";
+                game.data.textBox = "\"NICE LOOK.\"";
             }
 
             if (this.counter == 1260) {
@@ -87,43 +86,6 @@ game.PlayerEntity = me.Entity.extend({
                 this.is_walking = false;
                 this.body.vel.x = 0;
             }
-
-        if (game.data.triggerBreakGate > 0) {
-
-            if (game.data.triggerBreakGate == 300) {
-                me.game.viewport.shake(25, 300);
-                this.breakGate++;
-                console.log(this.breakGate);
-            }
-            game.data.triggerBreakGate--;
-            if (this.breakGate == 20) {
-                me.game.viewport.fadeOut("#ffffff", 500);
-                game.data.hacky.onDestroyEvent();
-                game.data.textBox = "";
-                //game.world.removeChild(this);
-                game.data.starGate.goTo("spring");
-            }
-        }
-        if (this.ghostFlicker > 0) {
-            this.ghostFlicker --;
-        }
-        if (!this.renderable.isFlickering() && this.ghostFlicker <= 0 && !game.data.cutScene) {
-            game.data.textBox = "";
-        }
-        if (me.input.isKeyPressed('left')) {
-            this.hit = false;
-            // flip the sprite on horizontal axis
-            this.flipX(true);
-            // update the entity velocity
-            this.body.vel.x -= this.body.accel.x * me.timer.tick;
-        } else if (me.input.isKeyPressed('right')) {
-            // unflip the sprite
-            this.hit = false;
-            this.flipX(false);
-            // update the entity velocity
-            this.body.vel.x += this.body.accel.x * me.timer.tick;
-        } else {
-         this.body.vel.x = 0;
         }
         else {
             if (this.ghostFlicker > 0) {
@@ -178,6 +140,26 @@ game.PlayerEntity = me.Entity.extend({
             return true;
         }
      
+        if (game.data.triggerBreakGate > 0) {
+
+            if (game.data.triggerBreakGate == 300) {
+                me.game.viewport.shake(25, 300);
+                this.breakGate++;
+            }
+            game.data.triggerBreakGate--;
+            if (this.breakGate == 20) {
+                me.game.viewport.fadeOut("#ffffff", 500);
+                game.data.hacky.onDestroyEvent();
+                game.data.textBox = "";
+                game.data.score = 0;
+                game.data.level = "WINTER";
+                game.data.starGate.goTo("WINTER");
+                me.audio.pauseTrack();
+                me.audio.playTrack("winter");
+            }
+        }
+
+
         // else inform the engine we did not perform
         // any update (e.g. position, animation)
         return false;
@@ -356,6 +338,7 @@ game.FriendlyEntity = me.Entity.extend({
       //  return false; 
 });
 
+
 game.StillEntity = me.Entity.extend({
     init: function(x, y, settings) {
         // define this here instead of tiled
@@ -466,6 +449,9 @@ game.EnemyEntity = me.Entity.extend({
  
         // walking & jumping speed
         this.body.setVelocity(4, 6);
+        if (game.data.level=="SUMMER") {
+            this.body.setVelocity(2.5, 4);
+        }
         this.font = new me.BitmapFont("32x32_font", 32);
         this.type = 'enemy';
          
@@ -549,10 +535,16 @@ game.BossEntity = me.Entity.extend({
                 game.data.textBox = "\"HELLO.\"";
             }
         if (this.counter == 500)
-            game.data.textBox = "MORE TEXT HERE";
+            game.data.textBox = "\"I NOTICED YOU'VE";
+        if (this.counter == 600)
+            game.data.textBox = "BEEN STRUGGLING.\"";
         if (this.counter == 700)
-            game.data.textBox = "ETC";
-        if (this.counter == 900) {
+            game.data.textBox = "\"SO HERE'S AN OPTION.\"";
+        if (this.counter == 800)
+            game.data.textBox = "\"BECOME ONE OF US";
+        if (this.counter == 900)
+            game.data.textBox = "AND WE'LL STOP BOTHERING YOU.\"";
+        if (this.counter == 1100) {
             game.data.hacky = this;
             game.data.textBox = "<- YES OR -> NO";
             this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
@@ -560,7 +552,12 @@ game.BossEntity = me.Entity.extend({
                     //me.game.world.removeChild(s);
                     game.data.cutScene = false;
                     game.data.hacky.onDestroyEvent();
-                    game.data.starGate.goTo("fall-easy"); //TODO obviously don't go to spring
+                    game.data.score = 0;
+                    game.data.level = "FALL2";
+                    me.audio.pauseTrack();
+                    me.audio.playTrack("fall");
+                    game.data.starGate.goTo("fall-easy");
+
             } else if(action === "right") {
                 this.counter = 0;
                 game.data.triggerBreakGate = 300;
@@ -600,17 +597,20 @@ game.StarGateEntity = me.LevelEntity.extend({
                 this.goTo("alpha");
             else {
                 var calc = 25 - game.data.score;
-                game.data.textBox = "NEED " + calc + " MORE STARS";                
+                game.data.textBox = "NEED " + calc + " MORE STARS";
+                if (calc == 1) {
+                    game.data.textBox = "NEED 1 MORE STAR";
+                }                
             }
         } else {
             if (game.data.score > 24) {
                 game.data.score = 0;
                 //LOOK HERE ^^
                 if (game.data.level == "SUMMER") {
-                    game.data.level = "FALL";
                     this.goTo("area01");
                     me.audio.pauseTrack();
                     me.audio.playTrack("fall");
+                    game.data.level = "FALL";
                     return;
                 } else if (game.data.level == "SPRING"){
                     game.data.level = "SUMMER";
@@ -620,9 +620,20 @@ game.StarGateEntity = me.LevelEntity.extend({
                     me.audio.playTrack("summer");
                     return;
                 }
+                else if (game.data.level == "FALL2") {
+                    game.data.level = "WINTER2";
+                    game.data.textBox = "";
+                    this.goTo("winter2");
+                    me.audio.pauseTrack();
+                    me.audio.playTrack("winter");
+                    return;
+                }
             } else {
                 var calc = 25 - game.data.score;
                 game.data.textBox = "NEED " + calc + " MORE STARS";
+                if (calc == 1) {
+                    game.data.textBox = "NEED 1 MORE STAR";
+                }  
             }
         }
     }   
