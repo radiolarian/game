@@ -456,10 +456,14 @@ game.StarGateEntity = me.LevelEntity.extend({
                 if (game.data.level == "SUMMER") {
                     game.data.level = "FALL";
                     this.goTo("area01");
+                    me.audio.pauseTrack();
+                    me.audio.playTrack("fall");
                     return;
                 } else if (game.data.level == "SPRING"){
                     game.data.level = "SUMMER";
                     this.goTo("SUMMER");
+                    me.audio.pauseTrack();
+                    me.audio.playTrack("summer");
                     return;
                 }
             } else {

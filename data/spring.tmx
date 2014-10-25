@@ -69,7 +69,7 @@
   </data>
  </layer>
  <objectgroup name="player">
-  <object name="mainplayer" x="28.464" y="389.7" width="24" height="48" rotation="1">
+  <object name="mainplayer" x="28.464" y="368.7" width="24" height="58" rotation="1">
    <properties>
     <property name="image" value="spring-self-walk"/>
     <property name="spriteheight" value="64"/>
