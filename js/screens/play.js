@@ -12,7 +12,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		game.data.textBox = "HI";
 
 		//music
-		me.audio.playTrack("spring");
+		me.audio.playTrack("fall");
 
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();

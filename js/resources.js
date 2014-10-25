@@ -57,6 +57,11 @@ game.resources = [
     {name: "summer", type: "audio", src: "data/bgm/"},
     {name: "spring", type: "audio", src: "data/bgm/"},
     {name: "winter", type: "audio", src: "data/bgm/"},
+    {name: "title", type: "audio", src: "data/bgm/"},
+
+    //title!
+    {name: "title_screen", type: "image", src: "data/img/gui/title_screen.png"},
+
 	
     /* Sound effects. 
 	 * @example
