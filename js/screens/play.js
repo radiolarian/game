@@ -25,24 +25,33 @@ game.PlayScreen = me.ScreenObject.extend({
             	game.data.numCollected = 0;
             	game.data.score = 0;
                 me.levelDirector.reloadLevel();
-                me.audio.pauseTrack();
-                if (game.data.level == "SPRING")
-                	me.audio.playTrack("spring");
-                if (game.data.level == "SUMMER")
-                	me.audio.playTrack("summer");
-                if (game.data.level == "FALL" || game.data.level == "FALL2")
-                	me.audio.playTrack("fall");                
-                if (game.data.level == "WINTER" || game.data.level == "WINTER2")
-                	me.audio.playTrack("winter");
+                me.audio.stopTrack();
+	                if (!game.data.mute) {
+		                if (game.data.level == "SPRING")
+		                	me.audio.playTrack("spring");
+		                if (game.data.level == "SUMMER")
+		                	me.audio.playTrack("summer");
+		                if (game.data.level == "FALL" || game.data.level == "FALL2")
+		                	me.audio.playTrack("fall");                
+		                if (game.data.level == "WINTER" || game.data.level == "WINTER2")
+		                	me.audio.playTrack("winter");
+     	           }
             }
             if (action === "mute") {
                 if (!game.data.mute) {
-                	me.audio.pauseTrack();
+                	me.audio.stopTrack();
                 	game.data.mute = true;
                 }
                 else if (game.data.mute) {
-                	me.audio.resumeTrack();
-                	game.data.mute = false;
+	                if (game.data.level == "SPRING")
+	                	me.audio.playTrack("spring");
+	                if (game.data.level == "SUMMER")
+	                	me.audio.playTrack("summer");
+	                if (game.data.level == "FALL" || game.data.level == "FALL2")
+	                	me.audio.playTrack("fall");                
+	                if (game.data.level == "WINTER" || game.data.level == "WINTER2")
+	                	me.audio.playTrack("winter");                	
+	                game.data.mute = false;
                 }
             }            
         });		

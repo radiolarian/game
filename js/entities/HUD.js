@@ -26,7 +26,7 @@ game.HUD.Container = me.Container.extend({
 		
 		// add our child score object at the top left corner
 		this.addChild(new game.HUD.ScoreItem(10, 435));
-		this.addChild(new game.HUD.TextItem(120, 435));
+		this.addChild(new game.HUD.TextItem(75, 435));
 	}
 });
 

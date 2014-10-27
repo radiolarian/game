@@ -67,6 +67,9 @@ var game = {
 	    me.input.bindKey(me.input.KEY.LEFT,  "left");
 	    me.input.bindKey(me.input.KEY.RIGHT, "right");
 	    me.input.bindKey(me.input.KEY.UP, "jump", true);
+	    me.input.bindKey(me.input.KEY.A,  "left");
+	    me.input.bindKey(me.input.KEY.D, "right");
+	    me.input.bindKey(me.input.KEY.W, "jump", true);
 
 		// display title
 		me.state.change(me.state.MENU);
