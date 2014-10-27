@@ -34,7 +34,6 @@ game.HUD.TextItem = me.Renderable.extend({
 	init: function(x, y) {
 		this._super(me.Renderable, 'init', [x, y, 10, 10]);
 		this.font = new me.BitmapFont("32x32_font", 19.4);
-		//this.font.set("left");
 		this.textBox = 0;
 		this.floating = true;
 	},

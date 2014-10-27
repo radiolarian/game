@@ -1,9 +1,5 @@
 game.resources = [
 
-	/* Graphics. 
-	 * @example
-	 * {name: "example", type:"image", src: "data/img/example.png"},
-	 */
 	 //level tileset
     {name: "fall-tiles",  type:"image", src: "data/map/fall-tiles.png"},
     {name: "summer-tiles",  type:"image", src: "data/map/summer-tiles.png"},
@@ -39,7 +35,7 @@ game.resources = [
     //still NPCs
     {name: "npc-still",  type:"image", src: "data/img/still.png"},
 
-    //ENDING BULLSHIT
+    //ending NPCs
     {name: "smallbad",  type:"image", src: "data/img/end/smallbad.png"},
     {name: "smallyou",  type:"image", src: "data/img/end/smallyou.png"},
     {name: "medbad",  type:"image", src: "data/img/end/medbad.png"},
@@ -47,16 +43,7 @@ game.resources = [
     {name: "bigbad",  type:"image", src: "data/img/end/bigbad.png"},
     {name: "bigyou",  type:"image", src: "data/img/end/bigyou.png"},
 
-	/* Atlases 
-	 * @example
-	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},
-	 */
-		
-	/* Maps. 
-	 * @example
-	 * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
-	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
- 	 */
+    // Maps
     {name: "area01", type: "tmx", src: "data/area01.tmx"},
     {name: "alpha", type: "tmx", src: "data/alpha.tmx"},
     {name: "spring", type: "tmx", src: "data/spring.tmx"},
@@ -65,23 +52,17 @@ game.resources = [
     {name: "winter2", type: "tmx", src: "data/winter2.tmx"},
     {name: "fall-easy", type: "tmx", src: "data/fall-easy.tmx"},
 
-	/* Background music. 
-	 * @example
-	 * {name: "example_bgm", type: "audio", src: "data/bgm/"},
-	 */	
+	// Background Music
 	{name: "fall", type: "audio", src: "data/bgm/"},
     {name: "summer", type: "audio", src: "data/bgm/"},
     {name: "spring", type: "audio", src: "data/bgm/"},
     {name: "winter", type: "audio", src: "data/bgm/"},
     {name: "title", type: "audio", src: "data/bgm/"},
 
-    //title!
+    // Title Screen
     {name: "title_screen", type: "image", src: "data/img/gui/title_screen.png"},
 
 	
-    /* Sound effects. 
-	 * @example
-	 * {name: "example_sfx", type: "audio", src: "data/sfx/"}
-	 */
+    // Cling
 	{name: "cling", type: "audio", src: "data/sfx/"},
 ];

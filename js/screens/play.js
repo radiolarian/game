@@ -6,7 +6,6 @@ game.PlayScreen = me.ScreenObject.extend({
 		//load level
 		me.levelDirector.loadLevel("spring");
 
-		// DEBUG IS HERE!!!!!!!!!!!!!!!!!!!!!
 		game.data.score = 0;
 		game.data.numCollected = 0;
 		game.data.textBox = "";
@@ -66,6 +65,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.audio.stopTrack();
 		// remove the HUD from the game world
 		me.game.world.removeChild(this.HUD);
+		// unbind keys
 		me.input.unbindKey(me.input.KEY.R);
 		me.input.unbindKey(me.input.KEY.M);
 	}

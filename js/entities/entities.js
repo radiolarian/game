@@ -131,7 +131,6 @@ game.PlayerEntity = me.Entity.extend({
 
         // check for collision with sthg
         me.collision.check(this, true, this.collideHandler.bind(this), true);
-       //this.body.onCollision = this.onCollision.bind(this);
 
         // update animation if necessary
         if (this.body.vel.x!=0 || this.body.vel.y!=0) {
@@ -188,7 +187,6 @@ game.PlayerEntity = me.Entity.extend({
                 } 
                 var i = Math.floor(Math.random()*texts.length);
                 game.data.textBox = texts[i];
-                //game.data.textBox = "OH NO";
                 game.data.score -= 1;
                 this.renderable.flicker(750);
             }
@@ -215,19 +213,6 @@ game.PlayerEntity = me.Entity.extend({
 
     }
     },
-
-            /*draw : function (context) {
-            //this.parent(context);
-            
-            //context = me.CanvasRenderer.getContext2d();
-           
-            touching = me.game.world.collide(this);
-            if (touching) {
-                if (touching.obj.type == 'enemy') {
-                    this.font.draw(context, "WHY", this.pos.x-50, this.pos.y-50);
-                }
-            }
-        },*/
 
 });
 
@@ -365,17 +350,6 @@ game.StillEntity = me.Entity.extend({
         this.body.collisionType = me.collision.types.NPC_OBJECT;
          
     },
-    /**
-    // call by the engine when colliding with another object
-    // obj parameter corresponds to the other object (typically the player) touching this one
-    onCollision: function(res, obj) {
- 
-        // res.y >0 means touched by something on the bottom
-        // which mean at top position for this one
-        if (this.alive && (res.y > 0) && obj.falling) {
-            this.renderable.flicker(750);
-        }
-    }, **/
     update: function(dt) {
         },
 });
@@ -404,17 +378,6 @@ game.EndStillEntity = me.Entity.extend({
         this.body.collisionType = me.collision.types.END;
          
     },
-    /**
-    // call by the engine when colliding with another object
-    // obj parameter corresponds to the other object (typically the player) touching this one
-    onCollision: function(res, obj) {
- 
-        // res.y >0 means touched by something on the bottom
-        // which mean at top position for this one
-        if (this.alive && (res.y > 0) && obj.falling) {
-            this.renderable.flicker(750);
-        }
-    }, **/
     update: function(dt) {
         },
 });
@@ -460,17 +423,6 @@ game.EnemyEntity = me.Entity.extend({
         this.type = 'enemy';
          
     },
-    /**
-    // call by the engine when colliding with another object
-    // obj parameter corresponds to the other object (typically the player) touching this one
-    onCollision: function(res, obj) {
- 
-        // res.y >0 means touched by something on the bottom
-        // which mean at top position for this one
-        if (this.alive && (res.y > 0) && obj.falling) {
-            this.renderable.flicker(750);
-        }
-    }, **/
     update: function(dt) {
  
         if (this.walkLeft && this.pos.x <= this.startX) {

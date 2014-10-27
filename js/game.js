@@ -4,7 +4,7 @@ var game = {
 
 	// an object where to store game information
 	data : {
-		// score
+		// global variables
 		level: "SPRING",
 		score : 0,
 		textBox : " ",
@@ -53,7 +53,7 @@ var game = {
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 		//fade
 		me.state.transition("fade", "#FFFFFF", 250);
-		// register our player entity in the object pool
+		// register entities in the object pool
 	    me.pool.register("mainPlayer", game.PlayerEntity);
    	    me.pool.register("CoinEntity", game.CoinEntity);
    	    me.pool.register("EnemyEntity", game.EnemyEntity);
