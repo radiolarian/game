@@ -154,8 +154,10 @@ game.PlayerEntity = me.Entity.extend({
                 game.data.score = 0;
                 game.data.level = "WINTER";
                 game.data.starGate.goTo("WINTER");
-                me.audio.pauseTrack();
-                me.audio.playTrack("winter");
+                me.audio.stopTrack();
+                if (!game.data.mute) {
+                        me.audio.playTrack("winter");
+                }
             }
         }
 
@@ -257,7 +259,9 @@ game.CoinEntity = me.CollectableEntity.extend({
     onCollision: function() {
         // do something when collected
         game.data.score += 1; //LOOK HERE
-        game.data.numCollected += 1;
+        if (game.data.level=="FALL") {
+            game.data.numCollected += 1;
+        }
         me.audio.play("cling");
         // make sure it cannot be collected "again"
         this.body.setCollisionMask(me.collision.types.NO_OBJECT);
@@ -554,8 +558,10 @@ game.BossEntity = me.Entity.extend({
                     game.data.hacky.onDestroyEvent();
                     game.data.score = 0;
                     game.data.level = "FALL2";
-                    me.audio.pauseTrack();
-                    me.audio.playTrack("fall");
+                    me.audio.stopTrack();
+                    if (!game.data.mute) {
+                        me.audio.playTrack("fall");
+                    }
                     game.data.starGate.goTo("fall-easy");
 
             } else if(action === "right") {
@@ -591,15 +597,18 @@ game.StarGateEntity = me.LevelEntity.extend({
     },
     onCollision : function () {
         if (game.data.level == "FALL") {
-            if (game.data.score > 25)
-                game.data.textBox = "YOU BROKE THE GAME!"
+            if (game.data.score >= 25)
+                game.data.textBox = "YOU'RE TOO GOOD! TRY STRUGGLING."
             else if (game.data.numCollected>29)
                 this.goTo("alpha");
             else {
                 var calc = 25 - game.data.score;
-                game.data.textBox = "NEED " + calc + " MORE STARS";
+                game.data.textBox = "NEED " + calc + " MORE STARS. GET THEM ALL!";
                 if (calc == 1) {
                     game.data.textBox = "NEED 1 MORE STAR";
+                } 
+                else if (calc >= 25) {
+                    game.data.textBox = "";
                 }                
             }
         } else {
@@ -608,32 +617,41 @@ game.StarGateEntity = me.LevelEntity.extend({
                 //LOOK HERE ^^
                 if (game.data.level == "SUMMER") {
                     this.goTo("area01");
-                    me.audio.pauseTrack();
-                    me.audio.playTrack("fall");
+                    me.audio.stopTrack();
+                    if (!game.data.mute) {
+                        me.audio.playTrack("fall");
+                    }
                     game.data.level = "FALL";
                     return;
                 } else if (game.data.level == "SPRING"){
                     game.data.level = "SUMMER";
                     game.data.numCollected = 0;
                     this.goTo("summer");
-                    me.audio.pauseTrack();
-                    me.audio.playTrack("summer");
+                    me.audio.stopTrack();
+                    if (!game.data.mute) {
+                        me.audio.playTrack("summer");
+                    }
                     return;
                 }
                 else if (game.data.level == "FALL2") {
                     game.data.level = "WINTER2";
                     game.data.textBox = "";
                     this.goTo("winter2");
-                    me.audio.pauseTrack();
-                    me.audio.playTrack("winter");
+                    me.audio.stopTrack();
+                    if (!game.data.mute) {
+                        me.audio.playTrack("winter");
+                    }                    
                     return;
                 }
             } else {
                 var calc = 25 - game.data.score;
-                game.data.textBox = "NEED " + calc + " MORE STARS";
+                    game.data.textBox = "NEED " + calc + " MORE STARS";
                 if (calc == 1) {
                     game.data.textBox = "NEED 1 MORE STAR";
-                }  
+                } 
+                else if (calc >= 25) {
+                    game.data.textBox = "";
+                } 
             }
         }
     }   
